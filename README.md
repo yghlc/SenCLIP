@@ -5,7 +5,7 @@ SenCLIP addresses this gap by aligning Sentinel-2 satellite images with geotagge
 
 [Accepted at WACV'25.]
 
-[Model Checkpoints]
+[Model Checkpoints](https://huggingface.co/pallavijainpj/SenCLIP)
 
 [Sentinel-2 Dataset]
 
