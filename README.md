@@ -9,6 +9,7 @@ SenCLIP addresses this gap by aligning Sentinel-2 satellite images with geotagge
 
 [Sentinel-2 Dataset]
 
+[LUCAS Frozen Embeddings 🤗](https://huggingface.co/pallavijainpj/SenCLIP/tree/main/LUCAS_CLIP_Frozen_Embeddings)
 # Model Architecture
 <div align="center">
 <img src="model_arch.jpg" width="1000" height="500">
