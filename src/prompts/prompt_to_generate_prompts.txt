@@ -1,0 +1,21 @@
+{
+    "ground-view":"Generate 50 extremely short and diverse sentences that may correspond to 
+                factual visual descriptions of photos taken over the land-use/land-cover class 'Annual Crop' 
+                such that they are as different as possible from all of these other classes:
+                ['Industrial', 'Pasture', 'River', 'Forest', 'Herbaceous Vegetation', 'Permanent Crop', 'Highway', 'Residential', 'Sea Lake']
+                Try to describe visual features or objects that are likely to be visible in such images, even if they are not stereotypical. 
+                Make sure they cover as many of all the possible random photos that could be taken over that land-use/land-cover and 
+                that they sound as objective as possible, covering different seasons and states of the land-use/land-cover. 
+                Make sure to add some examples related to the class for the image visual description. Do not make poetic sentences but more factual."
+}
+{
+    "aerial-view":"Generate 50 extremely short and diverse sentences that may correspond to factual visual descriptions of aerial or satellite view 
+                    over the land-use/land-cover class 'Annual Crop'  such that there are as different as possible from all of these other classes:
+                    ['Annual Crop', 'Industrial', 'Pasture', 'River', 'Forest', 'Herbaceous Vegetation', 'Permanent Crop', 'Highway', 'Residential', 'Sea Lake']
+                    Try to describe aerial or satellite  visual features or objects that are likely to be visible in such images, even if they are not stereotypical. 
+                    Add aerial view context with patterns and use "aerial", "satellite photo" terms.  
+                    Make sure they cover as many of all the possible random photos that could be taken over that land-use/land-cover and 
+                    that they sound as objective as possible, covering different seasons and states of the land-use/land-cover. 
+                    Make sure to add some examples related to the class for the image aerial or satellite visual attributes. 
+                    Do not make poetic sentences but more factual."
+}
