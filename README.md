@@ -21,3 +21,7 @@ SenCLIP addresses this gap by aligning Sentinel-2 satellite images with geotagge
 Sen2LUCAS dataset contains geotagged Sentinel-2 data, which is obtained from the LUCAS 2018 dataset, consisting of 100x100 pixel images with three spectral bands (RGB). Data was retrieved using the [Planetary Computers API](https://planetarycomputer.microsoft.com/docs/quickstarts/reading-stac/), focusing on the same months as the LUCAS data. To ensure minimal cloud interference (10-20% cloud coverage), the collection window was extended by up to ±2 months based on the availability of cloud-free images.
 
 We have released four model checkpoints, covering both RN50 and ViT-B/32 architectures, with variants for average pooling and attention pooling.
+
+# Acknowledgments
+Sat2Cap the codebase we used to train the models.
+CLIPCap the codebase we used for caption generation
