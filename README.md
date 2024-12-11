@@ -24,4 +24,5 @@ We have released four model checkpoints, covering both RN50 and ViT-B/32 archite
 
 # Acknowledgments
 Sat2Cap the codebase we used to train the models.
-CLIPCap the codebase we used for caption generation
+
+CLIPCap the codebase we used for caption generation.
