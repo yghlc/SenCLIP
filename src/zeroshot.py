@@ -113,7 +113,7 @@ def load_model(weight_path, model_name, device):
     model, _ = clip.load(model_name, device=device)
     checkpoint = torch.load(weight_path, map_location=torch.device('cpu'))
     model.load_state_dict(checkpoint, strict=True)
-    model.eval()
+    model.to(device).eval()
     return model
 
 
@@ -134,7 +134,7 @@ def main(args):
 
     # Load prompts
     templates = json.load(open(args.template_path))
-    zeroshot_weights = zeroshot_classifier(model, class_names, templates, device).T
+    encoded_prompts = zeroshot_classifier(model, class_names, templates, device).T
 
     logits_list, labels_list = [], []
     for images, labels in tqdm(test_loader, desc="Evaluating"):
@@ -142,7 +142,7 @@ def main(args):
         with torch.no_grad():
             image_features = model.encode_image(images)
             image_features /= image_features.norm(dim=-1, keepdim=True)
-            logits = image_features @ zeroshot_weights
+            logits = image_features @ encoded_prompts
             logits_list.append(logits)
             labels_list.append(labels)
 
