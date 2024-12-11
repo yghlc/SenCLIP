@@ -15,23 +15,23 @@ from SenCLIP import SenCLIP
 
 # Define data loading and preprocessing here
 def get_args():
-    parser = ArgumentParser(description='', formatter_class=RawTextHelpFormatter)
+    parser = ArgumentParser(description='Training SenCLIP', formatter_class=RawTextHelpFormatter)
 
     # Data params
     parser.add_argument('--root_data_dir', type=str, default='/path/to/Sentinel_LUCAS/')
-    parser.add_argument('--emb_path', type=str, default='/path/to/Lucas_Frozen_Embeddings/lucas_clipemb_RN50.pt')
+    parser.add_argument('--emb_path', type=str, default='/path/to/Lucas_Frozen_Embeddings/lucas_clipemb_ViTB-32.pt')
     parser.add_argument('--data_path_list', type=str, default='/path/to/sentinel_paths.npy')
     parser.add_argument('--version_fold', type=str, default='SenCLIP')
-    parser.add_argument('--dataset', type=str, default='test')  #SenDataset
+    parser.add_argument('--dataset', type=str, default='SenDataset')  #SenDataset
 
     # Trainer hyperparameters
     parser.add_argument('--BATCH_SIZE', type=int, default=32)
     parser.add_argument('--NUM_WORKERS', type=int, default=8)
-    parser.add_argument('--NUM_EPOCHS', type=int, default=10)
-    parser.add_argument('--ARCH', type=str, default='RN50')
+    parser.add_argument('--NUM_EPOCHS', type=int, default=1)
+    parser.add_argument('--ARCH', type=str, default='ViT-B/32')
     parser.add_argument('--device', type=int, default=1)
     parser.add_argument('--OPT', type=str, default='adamw')
-    parser.add_argument('--pooling', type=str, default='avgpool')  # Options: avgpool, attpool_perdim, attpool_perimage
+    parser.add_argument('--pooling', type=str, default='attpool_perimage')  # Options: avgpool, attpool_perdim, attpool_perimage
     parser.add_argument('--pool_out', type=str, default='sum')
     parser.add_argument('--trainable_layers', nargs='+', default=["visual"])
 
@@ -73,7 +73,16 @@ def main(args):
                 queue_size=kwargs["queue_size"],
                 queue_data=kwargs["queue_data"],
             )
-
+        def train_dataloader(self):
+            
+            return DataLoader(train_dataset, 
+                                batch_size=self.hparams.batch_size, 
+                                num_workers=args.NUM_WORKERS,
+                                shuffle=True,
+                                pin_memory=True,
+                                drop_last=True,
+                                )
+        
         def training_step(self, batch, batch_idx):
             logits, labels = self.learner(batch)
             logit_scale = self.logit_scale.exp()
@@ -88,15 +97,15 @@ def main(args):
                     self.parameters(),
                     lr=self.hparams.learning_rate,
                     momentum=0.9,
-                    weight_decay=self.hparams.weight_decay,
+                    weight_decay=args.weight_decay,
                 )
             elif self.hparams.optimiser == "adamw":
                 optimizer = torch.optim.AdamW(
-                    self.parameters(), lr=self.hparams.learning_rate, weight_decay=self.hparams.weight_decay
+                    self.parameters(), lr=self.hparams.learning_rate, weight_decay=args.weight_decay
                 )
             else:
                 optimizer = torch.optim.Adam(
-                    self.parameters(), lr=self.hparams.learning_rate, weight_decay=self.hparams.weight_decay
+                    self.parameters(), lr=self.hparams.learning_rate, weight_decay=args.weight_decay
                 )
             scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.95)
             return [optimizer], [scheduler]
@@ -137,6 +146,7 @@ def main(args):
         callbacks=[lr_monitor, checkpoint_callback],
         logger=wandb_logger,
         log_every_n_steps=10,
+        fast_dev_run = 100
     )
 
     # Train

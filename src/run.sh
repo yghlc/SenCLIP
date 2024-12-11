@@ -1,0 +1,19 @@
+python -m src.main\
+            --root_data_dir '/path/to/Sentinel_LUCAS/' \
+            --emb_path '/path/to/Lucas_Frozen_Embeddings/lucas_clipemb_ViTB-32.pt'\
+            --image_path '/path/to/sentinel_paths.npy'\
+            --version_fold 'SenCLIP_ViTB32_MB_avgpool'\
+            --saved_model '/path/to/checkpoint folder/'\
+            --dataset 'SenDataset' \
+            --BATCH_SIZE 32 \
+            --NUM_WORKERS 8 \
+            --NUM_EPOCHS 100 \
+            --ARCH 'ViT-B/32' \
+            --LOSS_TYPE 'clip_loss' \
+            --OPT 'adamw' \
+            --device 3 \
+            --LR 1e-4 \
+            --weight_decay 0.2 \
+            --pooling 'avgpool' \
+            --pool_out 'sum' \
+            --pool_layer 'linear'

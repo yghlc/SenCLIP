@@ -29,7 +29,6 @@ def get_args():
                             formatter_class=RawTextHelpFormatter)
  
     parser.add_argument('--ckpt_path', type=str, default='./SenCLIP_AvgPool_ViTB32.ckpt', help="Path to model checkpoint")    
-    parser.add_argument('--version', type=str, default='SenCLIP')
     parser.add_argument('--model_arch', type=str, default='ViT-B/32')
     parser.add_argument('--template_path', type=str, default='./prompts/prompt_ben_ground_mixed.json', help="prompt_template_path")
     parser.add_argument('--mean', type=list, default=(0.347, 0.376, 0.296), help="Normalization mean for images")

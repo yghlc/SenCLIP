@@ -168,7 +168,12 @@ class SenCLIP(nn.Module):
         y_emb, x_img = data[:2]
         y_emb, x_img = y_emb.to(self.device), x_img.to(self.device)
 
-        frozen_ground_embedding = self.pooling_layer(y_emb).squeeze(-1)
+        if self.pooling != 'avgpool':
+            frozen_ground_embedding = self.pooling_layer(y_emb).squeeze(-1)
+        else:
+            with torch.no_grad():
+                frozen_ground_embedding = self.pooling_layer(y_emb.transpose(1,2)).transpose(1,2).squeeze(1).clone().detach()
+                
         positive_embedding = self.encoder(x_img)
         positive_embedding = self.projection_head(positive_embedding)
 
