@@ -1,11 +1,13 @@
 # SenCLIP: Enhancing zero-shot land-use mapping for Sentinel-2 with ground-level prompting
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14231252.svg)](https://doi.org/10.5281/zenodo.14231252)
+
+[![Dataset](https://zenodo.org/badge/DOI/10.5281/zenodo.14231252.svg)](https://doi.org/10.5281/zenodo.14231252)
+[![arXiv](https://img.shields.io/badge/arXiv-2412.08536-red)](https://arxiv.org/abs/2412.08536)
 
 Official implementation of the paper **SenCLIP: Enhancing zero-shot land-use mapping for Sentinel-2 with ground-level prompting**, a vision-language framework that adapts **CLIP** for zero-shot land-use/land-cover (LULC) mapping with Sentinel-2 imagery. Pre-trained models like CLIP excel at zero-shot tasks but struggle with satellite imagery due to limited representation in their training data.  
 
 SenCLIP addresses this gap by aligning Sentinel-2 satellite images with geotagged [LUCAS 2018](https://ec.europa.eu/eurostat/web/lucas/database/2018) ground-level photos, enabling the model to understand detailed ground-view descriptions. Evaluated on EuroSAT and BigEarthNet, SenCLIP significantly improves LULC classification accuracy using both aerial and ground-level prompts, advancing the use of vision-language models for medium-resolution satellite imagery.
 
-[Accepted at WACV'25.]
+Accepted at WACV'25!
 
 [Model Checkpoints 🤗 ](https://huggingface.co/pallavijainpj/SenCLIP)
 
