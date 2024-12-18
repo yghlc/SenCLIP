@@ -25,6 +25,5 @@ Sen2LUCAS dataset contains geotagged Sentinel-2 data, which is obtained from the
 We have released four model checkpoints, covering both RN50 and ViT-B/32 architectures, with variants for average pooling and attention pooling.
 
 # Acknowledgments
-Sat2Cap the codebase we used to train the models.
-
-CLIPCap the codebase we used for caption generation.
+This repository is based on [CLIP](https://github.com/openai/CLIP) and [Sat2Cap](https://github.com/mvrl/Sat2Cap/tree/main) repositories.
+For caption generation we used [CLIPCap](https://github.com/rmokady/CLIP_prefix_caption?tab=readme-ov-file) repository.
