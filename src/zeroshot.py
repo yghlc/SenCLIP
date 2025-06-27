@@ -122,7 +122,7 @@ def main(args):
     transform = transform_img(args.mean, args.std)
 
     # Load dataset
-    dataset_path = os.path.join(args.root_dir, 'Datasets/EuroSAT/2750/')
+    dataset_path = os.path.join(args.root_dir, '')
     dataset = ImageFolder(dataset_path, transform=transform)
     test_loader = DataLoader(dataset, batch_size=args.batch_size, shuffle=False, num_workers=args.num_workers)
 
