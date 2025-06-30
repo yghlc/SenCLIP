@@ -15,7 +15,7 @@ from torchgeo import datasets
 from random import sample
 
 class BigEarthNetDataset(Dataset):
-    def __init__(self, root_dir, split='test',num_classes=19, bands=None, Image_Size=224, norm_value = 'BingCLIP' ):
+    def __init__(self, root_dir, split='test',num_classes=19, bands=None, Image_Size=224, norm_value = 'BingCLIP', download=False):
         super().__init__()
         bing_mean, bing_std = (0.347, 0.376, 0.296), (0.269, 0.261, 0.276)
         clip_mean, clip_std = (0.48145466, 0.4578275, 0.40821073), (0.26862954, 0.26130258, 0.27577711)
@@ -23,7 +23,8 @@ class BigEarthNetDataset(Dataset):
                                         split=split, 
                                         bands='s2', 
                                         num_classes= num_classes, 
-                                        transforms=None)
+                                        transforms=None,
+                                        download=download)
         
         self.class_lists = self.dataset.class_sets[num_classes]
         if norm_value in ["CLIP", "RemoteCLIP"]:   

@@ -19,7 +19,8 @@ class SenDataset(Dataset):
         super().__init__()
         if bands is None:
             bands = [3,2,1]
-        self.paths_sen = np.load(sen_image_path)
+        # self.paths_sen = np.load(sen_image_path)
+        self.paths_sen = [line.strip() for line in open(sen_image_path, "r")]
         self.emb_dict = torch.load(emb_path)#, map_location= 'cpu'
         self.root_dir = root_dir
         self.bands = bands

@@ -31,6 +31,8 @@ def get_args():
     parser.add_argument('--ckpt_path', type=str, default='./SenCLIP_AvgPool_ViTB32.ckpt', help="Path to model checkpoint")    
     parser.add_argument('--model_arch', type=str, default='ViT-B/32')
     parser.add_argument('--template_path', type=str, default='./prompts/prompt_ben_ground_mixed.json', help="prompt_template_path")
+    parser.add_argument('--version', type=str, default='BingCLIP', help="The version of the model, e.g., 'BingCLIP' or 'RemoteCLIP'")
+    parser.add_argument('--download', action='store_true',help="Set this flag to download the dataset if not present")
     parser.add_argument('--mean', type=list, default=(0.347, 0.376, 0.296), help="Normalization mean for images")
     parser.add_argument('--std', type=list, default=(0.269, 0.261, 0.276), help="Normalization std for images")
 
@@ -83,9 +85,9 @@ def load_model(weight_path, model_name, device):
 
 def main(args):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    dataset_dir = '/home/pallavi/DATA/Datasets/'
+    dataset_dir = '/home/hlc/Data/public_data_AI/BigEarthNet-v1.0'
 
-    dataset = BigEarthNetDataset(dataset_dir, split='test',num_classes=19, norm_value = args.version)
+    dataset = BigEarthNetDataset(dataset_dir, split='test',num_classes=19, norm_value = args.version, download=args.download)
     total_length = len(dataset)
     train_len = total_length-27000
     test_dataset, _ = torch.utils.data.random_split(dataset, [27000, train_len])
